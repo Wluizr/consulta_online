@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class CidadeController extends Controller
 {
-
     public readonly Cidade $cidades;
 
     public function __construct()
@@ -16,7 +15,6 @@ class CidadeController extends Controller
 
     }
 
-
     /**
      * Display a listing of the resource.
      */
@@ -24,8 +22,7 @@ class CidadeController extends Controller
     {
         $nome_cidade = $request->input('nome');
         $lista_cidades = $this->cidades->where('nome', 'LIKE', "%$nome_cidade%")->orderBy('nome', 'asc')->get();
-        
+
         return response()->json($lista_cidades);
     }
-
 }
