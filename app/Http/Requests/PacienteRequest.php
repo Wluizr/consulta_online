@@ -21,18 +21,23 @@ class PacienteRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'nome' => 'required|string',
-            // 'cpf' => 'required|',
             'celular' => 'required|max:20',
         ];
+
+
+        if($this->isMethod('post')){
+            $rules['cpf'] = 'required';
+        }
+
+        return $rules;
     }
 
     public function messages(): array
     {
         return [
             'required' => 'O campo :attribute, é obrigatório',
-            // 'celular' => 'Campo :attribute, só aceita números',
             'string' => 'O campo :attribute, precisa ser uma string;',
         ];
     }
